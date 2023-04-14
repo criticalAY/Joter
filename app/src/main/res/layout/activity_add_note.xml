@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.AddNoteActivity">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:orientation="vertical"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar_main"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent"
+            app:menu="@menu/main_menu"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <LinearLayout
+                android:layout_marginBottom="25dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+                <com.google.android.material.textfield.TextInputLayout
+                    style="@style/ThemeOverlay.Material3.TextInputEditText.FilledBox"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:boxStrokeWidth="0dp"
+                    app:endIconMode="dropdown_menu">
+
+                    <androidx.appcompat.widget.AppCompatAutoCompleteTextView
+                        android:id="@+id/user_profile_type"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="34sp"
+                        android:fontFamily="@font/alata"
+                        android:text="@string/all_notes"
+                        android:focusable="false"
+                        android:background="@android:color/transparent"
+                        android:inputType="none" />
+
+                </com.google.android.material.textfield.TextInputLayout>
+
+                <TextView
+                    android:id="@+id/notes_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_medium" />
+            </LinearLayout>
+
+        </androidx.appcompat.widget.Toolbar>
+
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/sync_card"
+            android:layout_marginHorizontal="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toBottomOf="@id/toolbar_main"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <LinearLayout
+                android:visibility="gone"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+                <TextView
+                    android:textSize="14sp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_light"
+                    android:text="@string/auto_sync"/>
+                <com.google.android.material.button.MaterialButton
+                    app:cornerRadius="24dp"
+                    android:layout_weight="0.5"
+                    android:layout_marginStart="8dp"
+                    android:text="@string/sync"
+                    android:singleLine="true"
+                    android:textAllCaps="false"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+
+                <com.google.android.material.button.MaterialButton
+                    android:layout_weight="0.5"
+                    app:cornerRadius="24dp"
+                    android:layout_marginStart="8dp"
+                    android:singleLine="true"
+                    android:text="@string/dismiss"
+                    android:textAllCaps="false"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <LinearLayout
+            android:layout_marginHorizontal="10dp"
+            android:layout_width="match_parent"
+            android:orientation="vertical"
+            android:layout_height="match_parent">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:layout_marginHorizontal="10dp"
+                android:layout_marginTop="10dp"
+                android:id="@+id/recyclerview_notes"
+                android:layout_width="match_parent"
+                android:visibility="gone"
+                app:layout_constraintTop_toBottomOf="@id/sync_card"
+                android:layout_height="wrap_content"
+                app:layout_constraintBottom_toBottomOf="parent" />
+
+
+
+
+            <LinearLayout
+                android:id="@+id/empty_data_layout"
+                android:layout_marginTop="70dp"
+                app:layout_constraintTop_toBottomOf="@id/sync_card"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                android:layout_width="match_parent"
+                android:gravity="center"
+                android:orientation="vertical"
+                android:layout_height="wrap_content">
+
+                <ImageView
+
+                    android:layout_width="200dp"
+                    android:src="@drawable/diary"
+                    android:layout_height="200dp"/>
+
+                <TextView
+                    android:textSize="20sp"
+                    android:gravity="center"
+                    android:fontFamily="@font/poppins_medium"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/no_notes"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:id="@+id/ly_bar_bottom"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:gravity="bottom|end"
+        android:orientation="horizontal">
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/action_add_note"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:src="@drawable/baseline_add_24"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="18dp"
+            android:elevation="6dp"
+            android:contentDescription="@string/add_note" />
+
+    </LinearLayout>
+
+</RelativeLayout>

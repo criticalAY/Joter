@@ -1,0 +1,112 @@
+plugins {
+    id 'com.android.application'
+    id 'org.jetbrains.kotlin.android'
+    id 'kotlin-android'
+    id 'kotlin-kapt'
+}
+// Create a variable called keystorePropertiesFile, and initialize it to your
+// keystore.properties file, in the rootProject folder.
+def keystorePropertiesFile = rootProject.file("keystore.properties")
+
+// Initialize a new Properties() object called keystoreProperties.
+def keystoreProperties = new Properties()
+
+// Load your keystore.properties file into the keystoreProperties object.
+keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+
+android {
+    signingConfigs {
+        config {
+            keyAlias keystoreProperties['keyAlias']
+            keyPassword keystoreProperties['keyPassword']
+            storeFile file(keystoreProperties['storeFile'])
+            storePassword keystoreProperties['storePassword']
+        }
+    }
+
+    dataBinding {
+        enabled = true
+    }
+    namespace 'com.uchi.joter'
+    compileSdk 33
+
+    defaultConfig {
+        applicationId "com.uchi.joter"
+        minSdk 24
+        targetSdk 33
+        versionCode 1
+
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+
+        productFlavors {
+
+            release {
+                debuggable false
+                minifyEnabled false
+                proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.txt'
+            }
+            debug {
+                debuggable true
+                minifyEnabled false
+                applicationIdSuffix '.debug'
+            }
+        }
+
+
+
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+    kotlinOptions {
+        jvmTarget = '1.8'
+    }
+}
+
+dependencies {
+
+    implementation 'androidx.core:core-ktx:1.10.0'
+    implementation 'androidx.appcompat:appcompat:1.6.1'
+    implementation 'com.google.android.material:material:1.8.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.4'
+    testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.5'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.5.1'
+
+    def room_version = "2.5.1"
+    implementation "androidx.room:room-runtime:$room_version"
+    annotationProcessor "androidx.room:room-compiler:$room_version"
+    implementation "androidx.room:room-rxjava2:$room_version"
+    implementation "androidx.room:room-rxjava3:$room_version"
+    implementation "androidx.room:room-guava:$room_version"
+    testImplementation "androidx.room:room-testing:$room_version"
+    implementation "androidx.room:room-paging:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
+
+    implementation "androidx.room:room-runtime:$room_version"
+    kapt "androidx.room:room-compiler:$room_version"
+    implementation "androidx.room:room-ktx:$room_version"
+    def sqlite_version = "2.3.1"
+
+    // Java language implementation
+    implementation("androidx.sqlite:sqlite-ktx:$sqlite_version")
+
+    // Kotlin
+    implementation("androidx.sqlite:sqlite-ktx:$sqlite_version")
+
+    // Implementation of the AndroidX SQLite interfaces via the Android framework APIs.
+    implementation("androidx.sqlite:sqlite-framework:$sqlite_version")
+
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.6.1"
+    implementation"androidx.lifecycle:lifecycle-runtime-ktx:2.6.1"
+    implementation"androidx.lifecycle:lifecycle-livedata-ktx:2.6.1"
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.6.1'
+
+
+}
