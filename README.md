@@ -25,3 +25,8 @@ Sync is not yet available as Joter is released for testing but all the features 
 </div>
 
 
+# Privacy Policy
+
+[Privacy Policy ](https://github.com/criticalAY/Joter/blob/master/doc/privacy.md)
+
+
