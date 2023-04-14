@@ -1,3 +1,16 @@
+<style>
+  table {
+    border-collapse: collapse;
+  }
+  td {
+    text-align: center;
+    padding: 0;
+  }
+  img {
+    display: block;
+    margin: auto;
+  }
+</style>
 
 <table>
   <tr>
