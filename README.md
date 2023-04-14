@@ -1,6 +1,10 @@
-<p align="center">
-<img src="doc/graphics/main.jpg" width=50% height=50%/>
-</p>
+
+<table>
+  <tr>
+    <td><img src="doc/graphics/main.jpg" width="50%" height="50%"/></td>
+    <td><img src="doc/graphics/create.jpg" width="50%" height="50%"/></td>
+  </tr>
+</table>
 
 # Joter
 Joter is a note making application using kotlin and java, AndroidStudio is the dev environment for this application
