@@ -1,5 +1,5 @@
 <p align="center">
-<img src="docs/graphics/main.jpg"/>
+<img src="doc/graphics/main.jpg"/>
 </p>
 
 # Joter
