@@ -2,4 +2,5 @@
 <resources xmlns:android="http://schemas.android.com/apk/res/android">
 
     <attr name="iconColor" format="color" />
+    <attr name="backgroundLayoutColor" format="color"/>
 </resources>

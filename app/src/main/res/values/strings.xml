@@ -13,7 +13,7 @@
     <string name="share">Share</string>
     <string name="heading">Heading</string>
     <string name="note">Note</string>
-    <string name="note_count">%d notes</string>
+    <string name="note_count">Notes: %d</string>
     <string name="search">Search</string>
     <string name="edit">Edit</string>
     <string name="list_view">List view</string>
@@ -27,6 +27,7 @@
     <string name="about_joter">About Joter</string>
     <string name="ester_egg">Shruti \u2764\ufe0f</string>
     <string name="app_title">About Joter</string>
-    <string name="about_message">Created by criticalAY\nMight contains bugs as its a beta version</string>
+    <string name="about_message">Created by criticalAY\nMight contain bugs as its a beta version</string>
+    <string name="learn_more">Learn more</string>
     <string name="ok">Ok</string>
 </resources>

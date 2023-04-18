@@ -3,8 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:orientation="vertical"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context=".ui.SettingsActivity">
 
     <androidx.appcompat.widget.Toolbar
@@ -16,9 +16,9 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
-            android:gravity="center"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:gravity="center">
 
             <ImageButton
                 android:id="@+id/action_home"
@@ -30,30 +30,31 @@
 
 
             <TextView
-                android:layout_marginStart="10dp"
                 android:layout_width="match_parent"
-                android:fontFamily="@font/poppins"
                 android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:fontFamily="@font/poppins"
                 android:text="@string/settings"
-                android:textSize="22sp"/>
+                android:textSize="22sp" />
         </LinearLayout>
     </androidx.appcompat.widget.Toolbar>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:padding="10dp"
-        android:orientation="vertical"
+        android:layout_height="wrap_content"
         android:layout_marginHorizontal="6dp"
         android:background="@drawable/round_background"
-        android:layout_height="wrap_content">
+        android:orientation="vertical"
+        android:padding="10dp">
 
         <TextView
 
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/poppins_medium"
-            android:textSize="16sp"
-            android:text="@string/version"/>
+            android:text="@string/version"
+            android:textSize="16sp" />
+
         <TextView
             android:id="@+id/version_text"
             android:layout_width="match_parent"
@@ -64,19 +65,21 @@
 
         <TextView
             android:id="@+id/about"
-           android:layout_marginTop="10dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:fontFamily="@font/poppins_medium"
-            android:textSize="16sp"
+            android:text="@string/about_joter"
+            android:textSize="16sp" />
+
+        <TextView
+            android:id="@+id/learn_more"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
-            android:text="@string/about_joter"/>
-
-
-
+            android:fontFamily="@font/poppins_medium"
+            android:textSize="12sp" />
 
     </LinearLayout>
-
-
 
 </LinearLayout>

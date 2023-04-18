@@ -21,6 +21,13 @@ import com.uchi.joter.utils.Utility.NOTE_CONTENT
 import com.uchi.joter.utils.Utility.NOTE_DATE
 import com.uchi.joter.utils.Utility.NOTE_ID
 import com.uchi.joter.utils.Utility.NOTE_TITLE
+import com.yahiaangelo.markdownedittext.MarkdownEditText
+import io.noties.markwon.AbstractMarkwonPlugin
+import io.noties.markwon.Markwon
+import io.noties.markwon.MarkwonVisitor
+import io.noties.markwon.ext.strikethrough.StrikethroughPlugin
+import io.noties.markwon.ext.tasklist.TaskListPlugin
+import org.commonmark.node.SoftLineBreak
 
 
 class NotesAdapter(private val notes: List<NoteEntity>,  private val longPressListener: (NoteEntity) -> Unit) :
@@ -31,7 +38,20 @@ class NotesAdapter(private val notes: List<NoteEntity>,  private val longPressLi
         val titleTextView: TextView = itemView.findViewById(R.id.note_title)
         val subTitleTextView: TextView = itemView.findViewById(R.id.note_sub_title)
         val dateTextView: TextView = itemView.findViewById(R.id.note_date)
-        val checkBox: CheckBox = itemView.findViewById(R.id.item_checkbox)
+        val markWon= Markwon.builder(itemView.context)
+            .usePlugin(StrikethroughPlugin.create())
+            .usePlugin(TaskListPlugin.create(itemView.context))
+            .usePlugin(object : AbstractMarkwonPlugin(){
+
+                override fun configureVisitor(builder: MarkwonVisitor.Builder) {
+                    super.configureVisitor(builder)
+                    builder.on(
+                        SoftLineBreak::class.java
+                    ){visitor, _ -> visitor.forceNewLine()}
+                }
+
+            })
+            .build()
         private val handler = Handler()
 
         init {
@@ -49,7 +69,7 @@ class NotesAdapter(private val notes: List<NoteEntity>,  private val longPressLi
 
             // Set custom long click duration
             itemView.setOnTouchListener(object : View.OnTouchListener {
-                private val longClickDuration = 1200L
+                private val longClickDuration = 500L
                 private var startTime = 0L
 
                 override fun onTouch(v: View, event: MotionEvent): Boolean {
@@ -88,10 +108,18 @@ class NotesAdapter(private val notes: List<NoteEntity>,  private val longPressLi
     }
 
     override fun onBindViewHolder(holder: NoteViewHolder, position: Int) {
-        val note = notes[position]
-        holder.titleTextView.text = note.noteTitle
-        holder.subTitleTextView.text = note.noteContent
-        holder.dateTextView.text = note.noteDate
+        notes[position].let {note->
+            holder.apply {
+                markWon.setMarkdown(subTitleTextView, note.noteContent!!)
+                holder.titleTextView.text = note.noteTitle
+                holder.dateTextView.text = note.noteDate
+            }
+        }
+
+//        val note = notes[position]
+//        holder.titleTextView.text = note.noteTitle
+////        holder.subTitleTextView.renderMD(note.noteContent.toString())
+//        holder.dateTextView.text = note.noteDate
     }
 
     override fun getItemCount(): Int = notes.size

@@ -203,7 +203,9 @@ class AddNoteActivity : AppCompatActivity() {
 
                     emptyNotesLayout.visibility = View.VISIBLE
                     recyclerViewLayout.visibility = View.GONE
+                    noteCount.visibility = View.GONE
                 } else{
+                    noteCount.visibility = View.VISIBLE
                     recyclerViewLayout.visibility = View.VISIBLE
                     emptyNotesLayout.visibility = View.GONE
                     noteCount.text = getString(R.string.note_count, notesAdapter.itemCount)

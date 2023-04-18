@@ -14,3 +14,7 @@
 .cxx
 local.properties
 .idea/deploymentTargetDropDown.xml
+.idea/deploymentTargetDropDown.xml
+.idea/deploymentTargetDropDown.xml
+app/release/app-release.aab
+keystore.properties

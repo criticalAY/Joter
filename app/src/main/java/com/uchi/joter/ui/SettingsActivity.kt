@@ -17,6 +17,7 @@ class SettingsActivity : AppCompatActivity() {
     private var tapCount = 0
     private lateinit var about:TextView
     private lateinit var versionText: TextView
+    lateinit var learnMore : TextView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,6 +27,7 @@ class SettingsActivity : AppCompatActivity() {
         supportActionBar?.setDisplayShowTitleEnabled(false)
         about = findViewById(R.id.about)
         versionText = findViewById(R.id.version_text)
+        learnMore = findViewById(R.id.learn_more)
 
         actionHome = findViewById(R.id.action_home)
         actionHome.setOnClickListener {
@@ -35,6 +37,7 @@ class SettingsActivity : AppCompatActivity() {
         }
 
         versionText.text = BuildConfig.VERSION_NAME
+        learnMore.text = getString(R.string.learn_more)
 
         about.setOnClickListener {
 //            tapCount++

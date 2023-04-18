@@ -25,6 +25,8 @@ import com.uchi.joter.utils.Utility.NOTE_DATE
 import com.uchi.joter.utils.Utility.NOTE_ID
 import com.uchi.joter.utils.Utility.NOTE_TITLE
 import com.uchi.joter.viewmodel.NotesViewModel
+import com.yahiaangelo.markdownedittext.MarkdownEditText
+import com.yahiaangelo.markdownedittext.MarkdownStylesBar
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import java.util.*
@@ -33,7 +35,6 @@ import java.util.*
 class CreateNoteActivity : AppCompatActivity() {
 
     lateinit var titleText: TextInputEditText
-    lateinit var contentText: TextInputEditText
     private lateinit var notesViewModel: NotesViewModel
     private lateinit var dateTimeTextView : TextView
     private lateinit var closeNoteButton: ImageView
@@ -43,6 +44,9 @@ class CreateNoteActivity : AppCompatActivity() {
     lateinit var redoBtn: ImageView
     lateinit var textHelper: TextViewUndoRedo
     private lateinit var noteID : String
+    private lateinit var contentText : MarkdownEditText
+    private lateinit var styleBar : MarkdownStylesBar
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
       //  supportRequestWindowFeature(Window.FEATURE_NO_TITLE)
@@ -55,9 +59,13 @@ class CreateNoteActivity : AppCompatActivity() {
         val toolbar = findViewById<Toolbar>(R.id.create_note_toolbar)
         setSupportActionBar(toolbar)
         titleText = findViewById(R.id.title_text_input)
-        contentText = findViewById(R.id.content_text_input)
+        contentText = findViewById(R.id.note_content_input)
         dateTimeTextView = findViewById(R.id.date_text_view)
         closeNoteButton = findViewById(R.id.action_cancel)
+        styleBar = findViewById(R.id.style_bar)
+        styleBar.stylesList = arrayOf(MarkdownEditText.TextStyle.BOLD,MarkdownEditText.TextStyle.ITALIC,MarkdownEditText.TextStyle.ORDERED_LIST,MarkdownEditText.TextStyle.UNORDERED_LIST, MarkdownEditText.TextStyle.TASKS_LIST,
+            MarkdownEditText.TextStyle.STRIKE,MarkdownEditText.TextStyle.QUOTE)
+        contentText.setStylesBar(styleBar)
 
         undoBtn = findViewById(R.id.action_undo)
         redoBtn = findViewById(R.id.action_redo)
@@ -100,6 +108,8 @@ class CreateNoteActivity : AppCompatActivity() {
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         menuInflater.inflate(R.menu.create_note_menu,menu)
+        val delete : MenuItem = menu!!.findItem(R.id.action_delete)
+        delete.isVisible = false
         return super.onCreateOptionsMenu(menu)
     }
 
@@ -117,7 +127,7 @@ class CreateNoteActivity : AppCompatActivity() {
 
     private fun saveNote() {
         val noteTitle = titleText.text?.toString()
-        val noteContent = contentText.text?.toString()
+        val noteContent = contentText.getMD().toString()
         val applicationScope = CoroutineScope(Dispatchers.Default)
         val notesRepo = NotesRepo(NotesRoomDatabase.getDatabase(this, applicationScope).notesDao())
         val notesViewModelFactory = NotesViewModelFactory(notesRepo)
