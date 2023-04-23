@@ -17,9 +17,11 @@
             android:exported="false" />
         <activity
             android:name=".ui.EditNoteActivity"
+            android:windowSoftInputMode="adjustResize"
             android:exported="false" />
         <activity
             android:name=".ui.CreateNoteActivity"
+            android:windowSoftInputMode="adjustResize"
             android:exported="false" />
         <activity
             android:name=".ui.AddNoteActivity"

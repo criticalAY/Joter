@@ -1,5 +1,6 @@
 package com.uchi.joter.viewmodel
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import android.graphics.Color
 import android.os.Handler
@@ -54,16 +55,26 @@ class NotesAdapter(private val notes: List<NoteEntity>,  private val longPressLi
             .build()
         private val handler = Handler()
 
+        private fun openEditNoteActivity(note: NoteEntity) {
+            val context = itemView.context
+            val intent = Intent(context, EditNoteActivity::class.java)
+            intent.putExtra(NOTE_ID, note.nid)
+            intent.putExtra(NOTE_TITLE, note.noteTitle)
+            intent.putExtra(NOTE_CONTENT, note.noteContent)
+            intent.putExtra(NOTE_DATE, note.noteDate)
+            context.startActivity(intent)
+        }
+
         init {
             itemView.setOnClickListener {
                 val note = notes[adapterPosition]
-                val context = itemView.context
-                val intent = Intent(context, EditNoteActivity::class.java)
-                intent.putExtra(NOTE_ID, note.nid)
-                intent.putExtra(NOTE_TITLE, note.noteTitle)
-                intent.putExtra(NOTE_CONTENT, note.noteContent)
-                intent.putExtra(NOTE_DATE, note.noteDate)
-                context.startActivity(intent)
+                openEditNoteActivity(note)
+            }
+
+
+            subTitleTextView.setOnClickListener {
+                val note = notes[adapterPosition]
+                openEditNoteActivity(note)
             }
 
 
@@ -71,6 +82,7 @@ class NotesAdapter(private val notes: List<NoteEntity>,  private val longPressLi
             itemView.setOnTouchListener(object : View.OnTouchListener {
                 private val longClickDuration = 500L
                 private var startTime = 0L
+
 
                 override fun onTouch(v: View, event: MotionEvent): Boolean {
                     when (event.action) {
@@ -80,11 +92,14 @@ class NotesAdapter(private val notes: List<NoteEntity>,  private val longPressLi
                         }
                         MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> {
                             handler.removeCallbacks(longClickRunnable)
-
+                            if (System.currentTimeMillis() - startTime < longClickDuration) {
+                                v.performClick() // trigger click listener
+                            }
                         }
                     }
-                    return false
+                    return true // consume touch event
                 }
+
 
 
                 private val longClickRunnable = Runnable {

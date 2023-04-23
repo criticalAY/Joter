@@ -82,6 +82,7 @@
         android:layout_height="0dp"
         android:layout_marginHorizontal="10dp"
         android:minHeight="300sp"
+        app:layout_constraintBottom_toTopOf="@id/style_bar_layout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/vertical_divider">
@@ -104,12 +105,12 @@
             <com.yahiaangelo.markdownedittext.MarkdownEditText
                 android:id="@+id/note_content_input"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginTop="6dp"
                 android:background="#00FFFFFF"
                 android:gravity="top"
                 android:hint="@string/note"
-                android:minHeight="300dp"
+                android:minHeight="100dp"
                 android:textSize="18sp" />
 
 
@@ -124,24 +125,17 @@
     <!--        android:background="#BDBDBD"-->
     <!--        app:layout_constraintTop_toTopOf="@id/utils_layout" />-->
 
-    <HorizontalScrollView
-        android:id="@+id/utils_layout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
 
         <LinearLayout
-
-            android:layout_width="wrap_content"
+            android:id="@+id/style_bar_layout"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:background="?attr/backgroundLayoutColor"
             android:gravity="center"
             android:orientation="horizontal"
             android:paddingBottom="10dp"
-            android:weightSum="3"
+            android:paddingTop="8dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
@@ -149,47 +143,49 @@
 
             <com.yahiaangelo.markdownedittext.MarkdownStylesBar
                 android:id="@+id/style_bar"
-                android:layout_width="wrap_content"
+                android:gravity="center"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content">
 
-                <ImageButton
-                    android:layout_width="0dp"
-                    android:layout_height="20dp"
-                    android:layout_gravity="center"
-                    android:layout_marginEnd="26dp"
-                    android:layout_weight="1"
-                    android:adjustViewBounds="true"
-                    android:background="#00FFFFFF"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/pencil" />
+<!--                TODO: Enable these functionality-->
 
-                <ImageButton
-                    android:layout_width="0dp"
-                    android:layout_height="24dp"
-                    android:layout_gravity="center"
-                    android:layout_marginEnd="26dp"
-                    android:layout_weight="1"
-                    android:adjustViewBounds="true"
-                    android:background="#00FFFFFF"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/camera" />
+<!--                <ImageButton-->
+<!--                    android:layout_width="0dp"-->
+<!--                    android:layout_height="20dp"-->
+<!--                    android:layout_gravity="center"-->
+<!--                    android:layout_marginEnd="26dp"-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:adjustViewBounds="true"-->
+<!--                    android:background="#00FFFFFF"-->
+<!--                    android:scaleType="fitCenter"-->
+<!--                    android:src="@drawable/pencil" />-->
 
-                <ImageButton
-                    android:layout_width="0dp"
-                    android:layout_height="24dp"
-                    android:layout_gravity="center"
-                    android:layout_weight="1"
-                    android:adjustViewBounds="true"
-                    android:background="#00FFFFFF"
-                    android:scaleType="fitCenter"
-                    android:src="@drawable/ic_mic" />
+<!--                <ImageButton-->
+<!--                    android:layout_width="24dp"-->
+<!--                    android:layout_height="24dp"-->
+<!--                    android:layout_gravity="center"-->
+<!--                    android:layout_marginEnd="26dp"-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:adjustViewBounds="true"-->
+<!--                    android:background="#00FFFFFF"-->
+<!--                    android:scaleType="fitCenter"-->
+<!--                    android:src="@drawable/camera" />-->
+
+<!--                <ImageButton-->
+<!--                    android:layout_width="24dp"-->
+<!--                    android:layout_height="24dp"-->
+<!--                    android:layout_gravity="center"-->
+<!--                    android:layout_weight="1"-->
+<!--                    android:adjustViewBounds="true"-->
+<!--                    android:background="#00FFFFFF"-->
+<!--                    android:scaleType="fitCenter"-->
+<!--                    android:src="@drawable/ic_mic" />-->
 
 
             </com.yahiaangelo.markdownedittext.MarkdownStylesBar>
 
         </LinearLayout>
 
-    </HorizontalScrollView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

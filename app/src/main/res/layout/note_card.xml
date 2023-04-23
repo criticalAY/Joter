@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_margin="4dp"
-    android:elevation="8dp"
-    android:maxHeight="250dp"
+    android:elevation="10dp"
+    android:maxHeight="100dp"
+    app:cardCornerRadius="18dp"
     android:layout_height="wrap_content">
 
     <LinearLayout
+        android:id="@+id/note_content_layout"
         android:padding="16dp"
         android:background="@drawable/round_background"
         android:layout_width="match_parent"
@@ -28,6 +31,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="@string/content"
+            android:maxLines="10"
             android:fontFamily="@font/poppins_light"/>
 
         <com.google.android.material.imageview.ShapeableImageView

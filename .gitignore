@@ -18,3 +18,7 @@ local.properties
 .idea/deploymentTargetDropDown.xml
 app/release/app-release.aab
 keystore.properties
+.idea/kotlinc.xml
+.idea/compiler.xml
+.idea/misc.xml
+app/release/app-release.aab

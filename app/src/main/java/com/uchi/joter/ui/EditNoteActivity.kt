@@ -16,6 +16,7 @@ import com.uchi.joter.room.NoteEntity
 import com.uchi.joter.room.NotesRepo
 import com.uchi.joter.room.NotesRoomDatabase
 import com.uchi.joter.room.NotesViewModelFactory
+import com.uchi.joter.utils.TextViewUndoRedo
 import com.uchi.joter.utils.Utility
 import com.uchi.joter.utils.Utility.NOTE_ID
 import com.uchi.joter.viewmodel.NotesViewModel
@@ -33,6 +34,9 @@ class EditNoteActivity : AppCompatActivity() {
     private lateinit var dateTimeTextView : TextView
     lateinit var time:String
     lateinit var date:String
+    lateinit var undoBtn: ImageView
+    lateinit var redoBtn: ImageView
+    lateinit var textHelper: TextViewUndoRedo
     lateinit var delNoteEntity: NoteEntity
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -52,6 +56,13 @@ class EditNoteActivity : AppCompatActivity() {
         time =Utility.getFormattedTime()
         date = Utility.getFormattedDate()
         dateTimeTextView.text = getString(R.string.date_time,date,time)
+
+        undoBtn = findViewById(R.id.action_undo)
+        redoBtn = findViewById(R.id.action_redo)
+
+        textHelper = TextViewUndoRedo(contentText)
+        textHelper.setMaxHistorySize(50)
+        textUndoRedo()
         setupEditNote()
 
         homeButton.setOnClickListener {
@@ -59,6 +70,21 @@ class EditNoteActivity : AppCompatActivity() {
             mIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK
             startActivity(mIntent)
 
+        }
+    }
+
+    private fun textUndoRedo() {
+        undoBtn.setOnClickListener {
+            if(contentText.text!!.isNotEmpty()){
+                textHelper.undo()
+
+            }
+
+        }
+        redoBtn.setOnClickListener {
+            if(contentText.text!!.isNotEmpty()){
+                textHelper.redo()
+            }
         }
     }
 

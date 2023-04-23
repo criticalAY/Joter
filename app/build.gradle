@@ -34,8 +34,8 @@ android {
         applicationId "com.uchi.joter"
         minSdk 24
         targetSdk 33
-        versionCode 101
-        versionName="Joter-1.01"
+        versionCode 102
+        versionName="Joter-1.02"
 
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
